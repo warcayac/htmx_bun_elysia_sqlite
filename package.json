@@ -1,0 +1,29 @@
+{
+  "name": "htmx_bun_elysia",
+  "version": "1.0.50",
+  "module": "src/index.js",
+  "dependencies": {
+    "@elysiajs/cors": "^0.8.0",
+    "@elysiajs/html": "^0.8.0",
+    "ansis": "^2.3.0",
+    "drizzle-orm": "^0.29.4",
+    "elysia": "latest"
+  },
+  "scripts": {
+    "test": "NODE_ENV=test bun test ./test/**.test.ts",
+    "dev": "bun run tailwind:dev | bun run elxsia:dev",
+    "elxsia:dev": "NODE_ENV=development bun --env-file=.env run --watch src/index.tsx",
+    "build": "bun run tailwind:build",
+    "tailwind:build": "bunx tailwindcss -i ./src/style.css -o ./public/style.css --minify",
+    "tailwind:dev": "bunx tailwindcss -i ./src/style.css -o ./public/style.css --watch",
+    "start": "NODE_ENV=production bun --env-file=.env run src/index.ts",
+    "db:generate": "drizzle-kit generate:sqlite",
+    "db:migrate": "bun run src/db/migrate.ts",
+    "db:seed": "bun run src/db/seed.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.0.7",
+    "drizzle-kit": "^0.20.14",
+    "tailwindcss": "^3.4.1"
+  }
+}
